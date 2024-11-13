@@ -41,8 +41,11 @@ class DASHFilter extends FormatFilter
         foreach ($this->dash->getRepresentations() as $key => $rep) {
             $streams = array_merge(
                 $streams,
+                [
+                    '-map', '0',      // Select all streams
+                    '-map', '-0:d', // Skip "data" streams (non-video, non-audio)
+                ],
                 Utiles::arrayToFFmpegOpt([
-                    'map'       => 0,
                     "s:v:$key"  => $rep->size2string(),
                     "b:v:$key"  => $rep->getKiloBitrate() . "k"
                 ]),
