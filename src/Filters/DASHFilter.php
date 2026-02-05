@@ -42,8 +42,8 @@ class DASHFilter extends FormatFilter
             $streams = array_merge(
                 $streams,
                 [
-                    '-map', '0',      // Select all streams
-                    '-map', '-0:d', // Skip "data" streams (non-video, non-audio)
+                    '-map', '0:v:0', // First video stream
+                    '-map', '0:a:0', // First audio stream
                 ],
                 Utiles::arrayToFFmpegOpt([
                     "s:v:$key"  => $rep->size2string(),
