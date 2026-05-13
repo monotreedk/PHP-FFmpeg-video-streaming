@@ -34,9 +34,9 @@ class DASHFiltersTest extends TestCase
                 "-use_timeline", "1", "-use_template", "1", "-init_seg_name", "test_init_\$RepresentationID$.\$ext$",
                 "-media_seg_name", "test_chunk_\$RepresentationID\$_\$Number%05d$.\$ext$", "-seg_duration", "10",
                 "-hls_playlist", "0", "-f", "dash", "-adaptation_sets", "id=0,streams=v id=1,streams=a",
-                "-map", "0", "-map", "-0:d", "-s:v:0", "256x144", "-b:v:0", "103k",
-                "-map", "0", "-map", "-0:d", "-s:v:1", "426x240", "-b:v:1", "138k",
-                "-map", "0", "-map", "-0:d", "-s:v:2", "640x360", "-b:v:2", "207k",
+                "-map", "0:v:0", "-map", "0:a:0?", "-s:v:0", "256x144", "-b:v:0", "103k",
+                "-map", "0:v:0", "-map", "0:a:0?", "-s:v:1", "426x240", "-b:v:1", "138k",
+                "-map", "0:v:0", "-map", "0:a:0?", "-s:v:2", "640x360", "-b:v:2", "207k",
                 "-strict", "-2"
             ],
             $apply);
