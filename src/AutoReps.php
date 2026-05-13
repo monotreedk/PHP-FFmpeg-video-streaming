@@ -176,7 +176,10 @@ class AutoReps implements \IteratorAggregate
      */
     private function computeSide(int $value, string $side): int
     {
-        $ratio = clone $this->getDimensions()->getRatio();
+        # Pass false so a non-standard aspect (e.g. iPhone screen recordings at 1206x2622)
+        # is not snapped to the nearest "standard" landscape/portrait ratio, which would
+        # stretch each representation off-aspect from the source.
+        $ratio = clone $this->getDimensions()->getRatio(false);
         return call_user_func_array([$ratio, 'calculate' . $side], [$value, $this->format->getModulus()]);
     }
 
